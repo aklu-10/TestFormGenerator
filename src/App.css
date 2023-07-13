@@ -1,0 +1,85 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.formContainer
+{
+    padding:10px;
+}
+
+.formContainer .formItem
+{
+    margin: 10px 0;
+}
+
+.formContainer .formItem h2
+{
+}
+
+
+.formContainer .formItem input
+{
+    border:1px solid lightgray;
+    height: 40px;
+    padding-left: 8px;
+    margin-left: 8px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.formContainer .formItem input:focus
+{
+    outline:none;
+    border:1px solid #3c37ff;
+}
+
+
+
+.formContainer .formItem .formItemInitials
+{
+
+}
+
+
+.formContainer .formItem .formItemFields
+{
+
+}
+
+.formContainer .formItem select
+{
+    padding:10px 20px;
+    border-radius: 6px;
+    width:52%;
+    background-color: white;
+    border:1px solid lightgray;
+    margin:8px 0;
+}
+
+.formContainer .formItem select:focus
+{
+    outline:none;
+    border:1px solid #9495df;
+}
+
+.formContainer button
+{
+    background-color: #3c37ff;
+    border:none;
+    color:white;
+    padding:10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.formContainer button:hover
+{
+    box-shadow:0 0 4px #3c37ff;
+}
+
+
