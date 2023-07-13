@@ -2,11 +2,13 @@ import React, { useState, useRef } from 'react'
 
 // baseDataStructure - react : { total:0, questions:[] }
 
-const PreDefinedTechnologyBasedQuestions = ({technologies, formData, setFormData, fieldName, numofPredefinedQuestions, setHideAddTechnologyBtn, counterToCheckIsGreaterThanProvidedNumOfQuestions}) => {
+const PreDefinedTechnologyBasedQuestions = ({technologies, formData, setFormData, fieldName, numofPredefinedQuestions, setHideAddTechnologyBtn, counterToCheckIsGreaterThanProvidedNumOfQuestions, setIsFormValid}) => {
 
     if(!technologies) return;
     
     const [showGreaterThan, setShowGreaterThan] = useState(false);
+
+    const [disableFields, setDisabledFields] = useState({mcq:false, programming: false, descriptive: false})
 
     // const [preTechnologyTestData, setPreTechnologyTestData] = useState({});
 
@@ -32,7 +34,7 @@ const PreDefinedTechnologyBasedQuestions = ({technologies, formData, setFormData
         // console.log(val)
 
         // console.log(obj)
-        console.log(obj);
+        // console.log(obj);
 
         let allSelectedQuesVarianceObj = Object.keys(obj.predefinedQuestions).filter(keyName => keyName.includes("select")).map(item=>obj.predefinedQuestions[item])
 
@@ -75,10 +77,29 @@ const PreDefinedTechnologyBasedQuestions = ({technologies, formData, setFormData
         // setFormData({...formData, predefinedQuestions: { ...formData.predefinedQuestions, [fieldName] : { ...formData.predefinedQuestions[fieldName], [selectedTech] : {...formData.preTechnologyTestData[fieldName][selectedTech], [e.target.name] : e.target.value }}}})
 
         
-        if(counterToCheckIsGreaterThanProvidedNumOfQuestions.current <= numofPredefinedQuestions)
-            setFormData(updatedFormData)
-            
+        // if(counterToCheckIsGreaterThanProvidedNumOfQuestions.current <= numofPredefinedQuestions)
+        setFormData(updatedFormData)
+
         sumAllQuestionVariances(updatedFormData)
+
+        if(counterToCheckIsGreaterThanProvidedNumOfQuestions.current < numofPredefinedQuestions)
+            setIsFormValid(false);
+        else
+            setIsFormValid(true);
+
+        if(counterToCheckIsGreaterThanProvidedNumOfQuestions.current >= numofPredefinedQuestions)
+        {
+            Object.keys(disableFields).filter(fields=>fields!=e.target.name).map(element=>(
+                disableFields[element] = true
+            ))
+        }
+        else
+        {
+            Object.keys(disableFields).filter(fields=>fields!=e.target.name).map(element=>(
+                disableFields[element] = false
+            ))
+        }
+    
 
 
         // if( sumAllQuestionVariationCounts() <= numofPredefinedQuestions )
@@ -143,17 +164,17 @@ const PreDefinedTechnologyBasedQuestions = ({technologies, formData, setFormData
                     <>
                         <div>
                             <label>MCQ</label>
-                            <input type='number' id={selectedTech} name='mcq' placeholder='Number of Mcq based' onChange={handleQuestionVariation}/>
+                            <input type='number' id={selectedTech} name='mcq' placeholder='Number of Mcq based' onChange={handleQuestionVariation} disabled={disableFields.mcq}/>
                         </div>
 
                         <div>
                             <label>Programming</label>
-                            <input type='number' id={selectedTech} name='programming' placeholder='Number of programming based' onChange={handleQuestionVariation}/>
+                            <input type='number' id={selectedTech} name='programming' placeholder='Number of programming based' onChange={handleQuestionVariation} disabled={disableFields.programming}/>
                         </div>
 
                         <div>
                             <label>Descriptive</label>
-                            <input type='number' id={selectedTech} name='descriptive' placeholder='Number of descriptive based' onChange={handleQuestionVariation}/>
+                            <input type='number' id={selectedTech} name='descriptive' placeholder='Number of descriptive based' onChange={handleQuestionVariation} disabled={disableFields.descriptive}/>
                         </div>  
                     </>
                 }

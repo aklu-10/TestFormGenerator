@@ -1,18 +1,19 @@
 import React, { useState, useRef } from 'react'
 import PreDefinedTechnologyBasedQuestions from '../PredefinedTechnologyBasedQuestions/PreDefinedTechnologyBasedQuestions';
 
-const PredefinedTestQuestions = ({formData, setFormData, apiData}) => {
+const PredefinedTestQuestions = ({formData, setFormData, apiData, setIsFormValid}) => {
 
     if(!apiData) return; 
 
     const technologies = useRef(Object.keys(apiData));
     const [numOfTechBasedQuestion, setNumOfTechBasedQuestion] = useState([[...technologies.current]]);
     const [numofPredefinedQuestions, setNumofPredefinedQuestions] = useState(0);
-    const [hideAddTechnologyBtn, setHideAddTechnologyBtn] = useState(false)
+    // const [hideAddTechnologyBtn, setHideAddTechnologyBtn] = useState(false)
     const counterToCheckIsGreaterThanProvidedNumOfQuestions = useRef(0);
+
     
 
-    console.log(counterToCheckIsGreaterThanProvidedNumOfQuestions.current, numofPredefinedQuestions)
+    // console.log(counterToCheckIsGreaterThanProvidedNumOfQuestions.current, numofPredefinedQuestions)
 
     function handleMoreTechQuestion()
     {
@@ -41,8 +42,10 @@ const PredefinedTestQuestions = ({formData, setFormData, apiData}) => {
         } */}
 
         {
-            counterToCheckIsGreaterThanProvidedNumOfQuestions.current!=0 && counterToCheckIsGreaterThanProvidedNumOfQuestions.current >= numofPredefinedQuestions &&
-            <span style={{color:'red'}}>You have reached the provided questions</span>
+            counterToCheckIsGreaterThanProvidedNumOfQuestions.current!=0 && counterToCheckIsGreaterThanProvidedNumOfQuestions.current === numofPredefinedQuestions ?
+            <span style={{color:'green'}}>Your number of questions are equivalent to provided questions</span> : counterToCheckIsGreaterThanProvidedNumOfQuestions.current > numofPredefinedQuestions ?
+            <span style={{color:'red'}}>Your number of questions are greater than provided questions</span> : null 
+            
                 
         }
 
@@ -51,7 +54,7 @@ const PredefinedTestQuestions = ({formData, setFormData, apiData}) => {
 
             numOfTechBasedQuestion.map((techs, index)=>(
                 
-                <PreDefinedTechnologyBasedQuestions key={index} fieldName={"select"+index} technologies={techs} formData={formData} setFormData={setFormData} numofPredefinedQuestions={numofPredefinedQuestions} setHideAddTechnologyBtn={setHideAddTechnologyBtn} counterToCheckIsGreaterThanProvidedNumOfQuestions={counterToCheckIsGreaterThanProvidedNumOfQuestions}/>
+                <PreDefinedTechnologyBasedQuestions key={index} fieldName={"select"+index} technologies={techs} formData={formData} setFormData={setFormData} numofPredefinedQuestions={numofPredefinedQuestions} counterToCheckIsGreaterThanProvidedNumOfQuestions={counterToCheckIsGreaterThanProvidedNumOfQuestions} setIsFormValid={setIsFormValid}/>
             ))
         }
 

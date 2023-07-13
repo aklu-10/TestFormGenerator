@@ -5,7 +5,7 @@ import axios from 'axios';
 const Form = () => {
 
     const [apiData, setApiData] = useState(null);
-
+    const [isFormValid, setIsFormValid] = useState(true);
     const [formData, setFormData] = useState({
         testName:'',
         testType:'',
@@ -32,7 +32,17 @@ const Form = () => {
     function handleFormSubmission(e)
     {
         e.preventDefault();
+        // console.log(formData, isFormValid)
+
+        if(isFormValid)
+        {
+            console.log(formData)
+            console.log("generate predefined questions here")
+            return;
+        }
+
         console.log(formData)
+
     } 
 
     useEffect(()=>
@@ -67,7 +77,7 @@ const Form = () => {
             <input type='number' placeholder='Type total number of question'/>
         </div>
                 
-        <PredefinedTestQuestions formData={formData} setFormData={setFormData} apiData={apiData}/>
+        <PredefinedTestQuestions formData={formData} setFormData={setFormData} apiData={apiData} setIsFormValid={setIsFormValid}/>
         
         <div className='formItem'>
             <h2>Static Questions</h2>  
