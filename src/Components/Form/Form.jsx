@@ -37,7 +37,18 @@ const Form = () => {
         if(isFormValid)
         {
             console.log(formData)
+            console.log(apiData)
             console.log("generate predefined questions here")
+
+            // console.log(Object.values(formData.predefinedQuestions).slice(1,).map((element)=>
+            // {
+            //     Object.keys(element).map(item=>
+            //     {
+            //         apiData.filter(tech=>tech==item)
+            //     })
+            // }))
+
+
             return;
         }
 

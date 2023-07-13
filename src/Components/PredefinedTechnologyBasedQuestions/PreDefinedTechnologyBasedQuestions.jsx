@@ -82,10 +82,10 @@ const PreDefinedTechnologyBasedQuestions = ({technologies, formData, setFormData
 
         sumAllQuestionVariances(updatedFormData)
 
-        if(counterToCheckIsGreaterThanProvidedNumOfQuestions.current < numofPredefinedQuestions)
-            setIsFormValid(false);
-        else
+        if(counterToCheckIsGreaterThanProvidedNumOfQuestions.current <= numofPredefinedQuestions)
             setIsFormValid(true);
+        else
+            setIsFormValid(false);
 
         if(counterToCheckIsGreaterThanProvidedNumOfQuestions.current >= numofPredefinedQuestions)
         {
