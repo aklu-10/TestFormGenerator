@@ -22,7 +22,7 @@ const StaticTechnologyBasedQuestions = ({apiData, formData, setFormData, selectN
                     questions:[
                         {
                             question:'',
-                            options:[],
+                            options:{option1:'', option2:'', option3:'', option4:''},
                             correctAnswer:''
                         }
                     ],
@@ -41,7 +41,7 @@ const StaticTechnologyBasedQuestions = ({apiData, formData, setFormData, selectN
     {
         let questionBase =  {
             question:'',
-            options:[],
+            options:{option1:'', option2:'', option3:'', option4:''},
             correctAnswer:''
         }
 
@@ -54,7 +54,6 @@ const StaticTechnologyBasedQuestions = ({apiData, formData, setFormData, selectN
         // setFormData({...formData, dynamicQuestions: {...formData.dynamicQuestions,  [selectName] : { [selectedTechnology] : { ...formData.dynamicQuestions[selectName][selectedTechnology], questions: [...formData.dynamicQuestions[selectName][selectedTechnology].questions, questionBase ]}}}})
     
         setFormData({...formData, dynamicQuestions: {...formData.dynamicQuestions, [selectName]: { [selectedTechnology] : { questions:[ ...formData.dynamicQuestions[selectName][selectedTechnology].questions, questionBase ]}}}})
-
 
     }
 
@@ -75,7 +74,7 @@ const StaticTechnologyBasedQuestions = ({apiData, formData, setFormData, selectN
             {
                 selectedTechnology && 
                 formData.dynamicQuestions[selectName][selectedTechnology].questions.map((element, index)=>(
-                    <StaticSpecificQuestions key={index} questionIndex={index} selectName={selectName} formData={formData} setFormData={setFormData} selectedTechnology={selectedTechnology}/>
+                    <StaticSpecificQuestions key={index} questionIndex={index} selectName={selectName} formData={formData} setFormData={setFormData} selectedTechnology={selectedTechnology} options={element.options}/>
                 ))
             }
 
