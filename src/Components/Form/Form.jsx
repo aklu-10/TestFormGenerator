@@ -1,4 +1,5 @@
 import PredefinedTestQuestions from '../PredefinedTestQuestion/PredefinedTestQuestions';
+import StaticTestQuestions from '../StaticTestQuestions/StaticTestQuestions';
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
@@ -22,10 +23,7 @@ const Form = () => {
         dynamicQuestions:
         {
             total:0,
-            react:{
-                total:0,
-                questions:[],
-            }
+            
         }
     });
 
@@ -47,7 +45,6 @@ const Form = () => {
             //         apiData.filter(tech=>tech==item)
             //     })
             // }))
-
 
             return;
         }
@@ -87,19 +84,10 @@ const Form = () => {
             <label>Total question : </label>
             <input type='number' placeholder='Type total number of question'/>
         </div>
-                
+
         <PredefinedTestQuestions formData={formData} setFormData={setFormData} apiData={apiData} setIsFormValid={setIsFormValid}/>
         
-        <div className='formItem'>
-            <h2>Static Questions</h2>  
-
-            <div className='formItemInitials'>
-            <label>Total number of static question : </label>
-            <input type='number' placeholder='Type total number of question'/>
-            </div>
-
-            <button type='button'>+ Add Question</button>
-        </div>
+        <StaticTestQuestions apiData={apiData} formData={formData} setFormData={setFormData}/>
 
         <button type='submit'>Submit</button>
 

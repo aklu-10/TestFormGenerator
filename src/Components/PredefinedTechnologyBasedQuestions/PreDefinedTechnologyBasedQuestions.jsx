@@ -151,7 +151,7 @@ const PreDefinedTechnologyBasedQuestions = ({technologies, formData, setFormData
 
             <div className='formItemFields'>
                 <select name={fieldName} onChange={handleSelectChange} defaultValue={"DEFAULT"} >
-                <option disabled value={"DEFAULT"}>Select technology </option>
+                <option disabled value={"DEFAULT"}>Select Technology </option>
                 {
                     technologies.map((keyName, index)=>(
                         <option key={index} value={keyName}>{keyName}</option>

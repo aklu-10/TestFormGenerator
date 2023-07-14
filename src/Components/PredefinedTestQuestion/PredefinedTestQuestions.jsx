@@ -3,7 +3,7 @@ import PreDefinedTechnologyBasedQuestions from '../PredefinedTechnologyBasedQues
 
 const PredefinedTestQuestions = ({formData, setFormData, apiData, setIsFormValid}) => {
 
-    if(!apiData) return; 
+    if(!apiData) return <p>loading...</p>; 
 
     const technologies = useRef(Object.keys(apiData));
     const [numOfTechBasedQuestion, setNumOfTechBasedQuestion] = useState([[...technologies.current]]);
